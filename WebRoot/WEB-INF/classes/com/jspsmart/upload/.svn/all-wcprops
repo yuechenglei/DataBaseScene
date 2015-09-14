@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/test/!svn/ver/341/start/src/com/jspsmart/upload
+END
+File.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/test/!svn/ver/341/start/src/com/jspsmart/upload/File.java
+END
+Files.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/test/!svn/ver/341/start/src/com/jspsmart/upload/Files.java
+END
+Request.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/test/!svn/ver/341/start/src/com/jspsmart/upload/Request.java
+END
+SmartUploadException.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/test/!svn/ver/341/start/src/com/jspsmart/upload/SmartUploadException.java
+END
+SmartUpload.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/test/!svn/ver/341/start/src/com/jspsmart/upload/SmartUpload.java
+END

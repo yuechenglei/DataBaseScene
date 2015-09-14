@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>com.util.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>UpLoadUserHeadImage</servlet-name>
+		<servlet-class>com.servlet.UpLoadUserHeadImage</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SaveCutImage</servlet-name>
+		<servlet-class>com.servlet.SaveCutImage</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ZoomImage</servlet-name>
+		<servlet-class>com.servlet.ZoomImage</servlet-class>
+	</servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ViewImage</servlet-name>
+    <servlet-class>com.servlet.ViewImage</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>charutupian</servlet-name>
+    <servlet-class>com.servlet.charutupian</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>bianjitupian</servlet-name>
+    <servlet-class>com.servlet.bianjitupian</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PhotoInsert</servlet-name>
+    <servlet-class>com.servlet.PhotoInsert</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PhotoAppend</servlet-name>
+    <servlet-class>com.servlet.PhotoAppend</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PicsUpload</servlet-name>
+    <servlet-class>servlet.PicsUpload</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PhotoStream</servlet-name>
+    <servlet-class>servlet.PhotoStream</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>DisplayChart</servlet-name>
+    <servlet-class>org.jfree.chart.servlet.DisplayChart</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Beifen</servlet-name>
+    <servlet-class>servlet.Beifen</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+	<servlet-mapping>
+		<servlet-name>UpLoadUserHeadImage</servlet-name>
+		<url-pattern>/servlet/UpLoadUserHeadImage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SaveCutImage</servlet-name>
+		<url-pattern>/servlet/SaveCutImage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ZoomImage</servlet-name>
+		<url-pattern>/servlet/ZoomImage</url-pattern>
+	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ViewImage</servlet-name>
+    <url-pattern>/servlet/ViewImage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>charutupian</servlet-name>
+    <url-pattern>/servlet/charutupian</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>bianjitupian</servlet-name>
+    <url-pattern>/servlet/bianjitupian</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PhotoInsert</servlet-name>
+    <url-pattern>/servlet/PhotoInsert</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PhotoAppend</servlet-name>
+    <url-pattern>/servlet/PhotoAppend</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PicsUpload</servlet-name>
+    <url-pattern>/servlet/PicsUpload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PhotoStream</servlet-name>
+    <url-pattern>/servlet/PhotoStream</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DisplayChart</servlet-name>
+    <url-pattern>/servlet/DisplayChart</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Beifen</servlet-name>
+    <url-pattern>/servlet/Beifen</url-pattern>
+  </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>

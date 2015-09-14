@@ -1,0 +1,105 @@
+package com.servlet;
+
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.teetaa.util.ImageHepler;
+import com.think.image.RotateImage;
+import com.think.image.Test;
+import com.util.DBUtil;
+
+public class ZoomImage extends HttpServlet
+{
+
+	private static final long serialVersionUID = 1L;
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException
+	{
+
+		
+		String picture = request.getParameter("picture");
+		int angle = Integer.parseInt(request.getParameter("zxxRotAngle_"));
+		int x = Integer.parseInt(request.getParameter("cropPosX_"));
+		int y = Integer.parseInt(request.getParameter("cropPosY_"));
+		int w = Integer.parseInt(request.getParameter("cropImageWidth_"));
+		int h = Integer.parseInt(request.getParameter("cropImageHeight_"));
+		/*
+		System.out.println(request.getParameter("zxxRotAngle_"));
+		System.out.println(request.getParameter("cropPosX_"));
+		System.out.println(request.getParameter("cropPosY_"));
+		System.out.println(request.getParameter("cropImageWidth_"));
+		System.out.println(request.getParameter("cropImageHeight_"));*/
+		
+		/*System.out.println("x : "+x);
+		System.out.println("y : "+y);
+		System.out.println("w : "+w);
+		System.out.println("h : "+h);
+		System.out.println("picture : "+picture);	*/			
+		
+		String filePath = request.getRealPath("")+"/UploadPhoto/"+picture;
+		String newFilePath = request.getRealPath("")+"/User/UserHeadImage/"+picture;
+		
+		BufferedImage src = ImageIO.read(new File(filePath));			
+		//旋转
+		BufferedImage des = RotateImage.Rotate(src, angle);
+		//裁剪
+		Test.abscut2(des,newFilePath, x, y, w, h,des.getWidth(),des.getHeight());
+		//入库		
+		saveImage(newFilePath);
+		response.sendRedirect("/start/uploadimage.jsp?Picurl="+picture+"&step=3");
+	}
+	
+	private void saveImage(String filePath) {
+		 Connection con = null ;
+		 PreparedStatement pstmt = null;
+		 try {
+	          
+	           con= new DBUtil().getConnection();	          
+	           String sql = "";
+	           File file = new File(filePath);
+
+	           InputStream photoStream = new FileInputStream(file);	            
+	           sql = "INSERT INTO photo (tp) VALUES (?)";
+	           pstmt = con.prepareStatement(sql);
+	           pstmt.setBinaryStream(1,photoStream,(int)file.length()); 
+	           //需获取文件输出流及其大小
+	           pstmt.execute();
+	           
+	        } catch (Exception e) {
+	                System.err.println("Error");
+	                e.printStackTrace();
+	        }finally{
+	        	if(pstmt!=null){
+	        		try {
+						pstmt.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        	}
+	        	if(con!=null){
+	        		try {
+						con.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        	}
+	        }
+	}
+	
+}

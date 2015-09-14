@@ -1,0 +1,21 @@
+package com.vo;
+
+import com.sun.org.apache.commons.collections.BinaryHeap;
+
+public class Picture {
+	private int id;
+	private byte[] bt;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public byte[] getBt() {
+		return bt;
+	}
+	public void setBt(byte[] bt) {
+		this.bt = bt;
+	}
+
+}
