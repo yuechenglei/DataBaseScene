@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.util.DBUtil;
+import sdu.edu.scene.util.DBUtil;
 
 public class ViewImage extends HttpServlet {
 
@@ -35,13 +35,13 @@ public class ViewImage extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//getParameter():Ö¸¶¨ÇëÇó²ÎÊıÃû³Æ£¬ÒÔÈ¡µÃ¶ÔÓ¦µÄÉè¶¨Öµ
+		//getParameter():æŒ‡å®šè¯·æ±‚å‚æ•°åç§°ï¼Œä»¥å–å¾—å¯¹åº”çš„è®¾å®šå€¼
 		String id = request.getParameter("img_id");
-		//Connection ¶ÔÏó´ú±í´ò¿ªµÄ¡¢ÓëÊı¾İÔ´µÄÁ¬½Ó
+		//Connection å¯¹è±¡ä»£è¡¨æ‰“å¼€çš„ã€ä¸æ•°æ®æºçš„è¿æ¥
 		Connection conn = null;
-		//Statement ÊÇ Java Ö´ĞĞÊı¾İ¿â²Ù×÷µÄÒ»¸öÖØÒª·½·¨£¬ÓÃÓÚÔÚÒÑ¾­½¨Á¢Êı¾İ¿âÁ¬½ÓµÄ»ù´¡ÉÏ£¬ÏòÊı¾İ¿â·¢ËÍÒªÖ´ĞĞµÄSQLÓï¾ä¡£Statement¶ÔÏó£¬ÓÃÓÚÖ´ĞĞ²»´ø²ÎÊıµÄ¼òµ¥SQLÓï¾ä
+		//Statement æ˜¯ Java æ‰§è¡Œæ•°æ®åº“æ“ä½œçš„ä¸€ä¸ªé‡è¦æ–¹æ³•ï¼Œç”¨äºåœ¨å·²ç»å»ºç«‹æ•°æ®åº“è¿æ¥çš„åŸºç¡€ä¸Šï¼Œå‘æ•°æ®åº“å‘é€è¦æ‰§è¡Œçš„SQLè¯­å¥ã€‚Statementå¯¹è±¡ï¼Œç”¨äºæ‰§è¡Œä¸å¸¦å‚æ•°çš„ç®€å•SQLè¯­å¥
 		Statement stmt = null;
-		//ResultSet±íÊ¾Êı¾İ¿â½á¹û¼¯µÄÊı¾İ±í£¬Í¨³£Í¨¹ıÖ´ĞĞ²éÑ¯Êı¾İ¿âµÄÓï¾äÉú³É
+		//ResultSetè¡¨ç¤ºæ•°æ®åº“ç»“æœé›†çš„æ•°æ®è¡¨ï¼Œé€šå¸¸é€šè¿‡æ‰§è¡ŒæŸ¥è¯¢æ•°æ®åº“çš„è¯­å¥ç”Ÿæˆ
 		ResultSet rs = null;
 		try {
 			conn = new DBUtil().getConnection();
@@ -49,17 +49,17 @@ public class ViewImage extends HttpServlet {
 			String sql = " SELECT * FROM PHOTO WHERE id = " + id;
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				//BLOB (binary large object)£¬¶ş½øÖÆ´ó¶ÔÏó
+				//BLOB (binary large object)ï¼ŒäºŒè¿›åˆ¶å¤§å¯¹è±¡
 				Blob b = rs.getBlob("tp");
-				//length()·µ»Ø´Ë Blob ¶ÔÏóÖ¸¶¨µÄ BLOB ÖµÖĞµÄ×Ö½ÚÊı
+				//length()è¿”å›æ­¤ Blob å¯¹è±¡æŒ‡å®šçš„ BLOB å€¼ä¸­çš„å­—èŠ‚æ•°
 				long size = b.length();
-				//getBytes()ÒÔ byte Êı×éµÄĞÎÊ½»ñÈ¡´Ë Blob ¶ÔÏó±íÊ¾µÄÈ«²¿»ò²¿·Ö BLOB Öµ,byte Êı×é°üº¬´ÓÎ»ÖÃ pos ¿ªÊ¼µÄ length ¸öÁ¬Ğø×Ö½Ú
+				//getBytes()ä»¥ byte æ•°ç»„çš„å½¢å¼è·å–æ­¤ Blob å¯¹è±¡è¡¨ç¤ºçš„å…¨éƒ¨æˆ–éƒ¨åˆ† BLOB å€¼,byte æ•°ç»„åŒ…å«ä»ä½ç½® pos å¼€å§‹çš„ length ä¸ªè¿ç»­å­—èŠ‚
 				byte[] bs = b.getBytes(1, (int) size);
 				response.setContentType("image/jpeg");
 				OutputStream outs = response.getOutputStream();
-				//Êä³öbyte[]
+				//è¾“å‡ºbyte[]
 				outs.write(bs);
-				//Ë¢ĞÂ´ËÊä³öÁ÷²¢Ç¿ÖÆĞ´³öËùÓĞ»º³åµÄÊä³ö×Ö½Ú
+				//åˆ·æ–°æ­¤è¾“å‡ºæµå¹¶å¼ºåˆ¶å†™å‡ºæ‰€æœ‰ç¼“å†²çš„è¾“å‡ºå­—èŠ‚
 				outs.flush();
 				outs.close();
 			} else {				

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,dao.LogDAO" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*,sdu.edu.scene.dao.LogDAO" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";

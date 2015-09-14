@@ -1,8 +1,6 @@
 package com.servlet;
 
 import java.io.FileInputStream;
-
-
 import java.io.IOException;
 import java.sql.PreparedStatement;
 
@@ -13,10 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sdu.edu.scene.util.DBUtil;
+import sdu.edu.scene.util.ScaleImage;
+
 import com.jspsmart.upload.File;
 import com.jspsmart.upload.SmartUpload;
-import com.util.DBUtil;
-import com.util.ScaleImage;
 
 public class UpLoadUserHeadImage extends HttpServlet {
 	/**
@@ -96,14 +95,14 @@ System.out.println("66666666666666666666");
 			mySmartUpload.upload();
 			File myFile = mySmartUpload.getFiles().getFile(0);
 			if (!myFile.isMissing()) {
-				//±£´æÎÄ¼ş
+				//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 				Date currTime = new Date();
 				SimpleDateFormat formatter2 = new SimpleDateFormat("yyyyMMddhhmmssS", Locale.US);
 				FileName = new String((formatter2.format(currTime)).getBytes("iso-8859-1"));
 				String ext = myFile.getFileExt();
 				FileName = FileName + "." + ext;
 				myFile.saveAs(sPath + "/" + FileName, mySmartUpload.SAVE_VIRTUAL);
-				//ÎÄ¼şĞÅÏ¢±£´æ½øÊı¾İ¿â
+			//æ–‡ä»¶ä¿¡æ¯ä¿å­˜è¿›æ•°æ®åº“
 				FileInputStream str=new FileInputStream(request.getRealPath("/") + sPath + "/" + FileName); 
 				FileInputStream str1 = new FileInputStream(request.getRealPath("/") + sPath + "/" + FileName); ;
 				String sql="insert into photo(case_id, picture, hash, icon, name, tp_new) values(?,?,?,?,?,?)";
@@ -117,7 +116,7 @@ System.out.println("66666666666666666666");
 				pstmt.execute(); 
 				str.close();
 				str1.close();
-				//±£´æËõÂÔÍ¼150*200
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼150*200
 				InputStream in = new FileInputStream(request.getRealPath("/") + sPath + "/" + FileName); ;
 				ScaleImage.saveImageAsJpg(in, request.getRealPath("/") + sPath + "/" + FileName, 150, 200);
 				in.close();

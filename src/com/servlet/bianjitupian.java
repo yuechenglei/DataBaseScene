@@ -1,9 +1,9 @@
-package com.servlet;
+ï»¿package com.servlet;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException; 
+import java.io.IOException;
 import java.io.InputStream;
 //import java.io.PrintWriter;
 import java.sql.Connection;
@@ -19,27 +19,29 @@ import javax.servlet.http.HttpServletResponse;
 //import com.think.image.RotateImage;
 //import com.think.image.Test;
 
-import com.util.DBUtil;
-      
-public class bianjitupian extends HttpServlet
-{
-	
+import sdu.edu.scene.util.DBUtil;
+
+public class bianjitupian extends HttpServlet {
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		this.doPost(request, response);
 	}
 
- 
-
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
-	 * This method is called when a form has its tag value method equals to post.
+	 * This method is called when a form has its tag value method equals to
+	 * post.
 	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
+	 * @param request
+	 *            the request send by the client to the server
+	 * @param response
+	 *            the response send by the server to the client
+	 * @throws ServletException
+	 *             if an error occurred
+	 * @throws IOException
+	 *             if an error occurred
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -51,71 +53,73 @@ public class bianjitupian extends HttpServlet
 		int y = Integer.parseInt(request.getParameter("cropPosY_"));
 		int w = Integer.parseInt(request.getParameter("cropImageWidth_"));
 		int h = Integer.parseInt(request.getParameter("cropImageHeight_"));
-		
-		//ÏÂÃæµÄ¶«Î÷Ö÷Òª¹¤×÷ÊÇ¶ÔÍ¼Æ¬½øĞĞ²Ù×÷
-				//»ñÈ¡ÎÄ¼şÂ·¾¶
-				String filePath = request.getRealPath("")+"/UploadPhoto/"+picture;
-				String newFilePath = request.getRealPath("")+"/User/UserHeadImage/"+picture;
-				
-				BufferedImage src = ImageIO.read(new File(filePath));			
-				//Ğı×ª
-				//BufferedImage des = RotateImage.Rotate(src, angle);
-				//²Ã¼ô
-				//Test.abscut2(des,newFilePath, x, y, w, h,des.getWidth(),des.getHeight());
-				//Èë¿â	
-				saveImage(newFilePath);
-				//Ìø×ªÒ³Ãæ
-				response.sendRedirect("/start/uploadimage.jsp?Picurl="+picture+"&step=3");
-				
+
+		// ä¸‹é¢çš„ä¸œè¥¿ä¸»è¦å·¥ä½œæ˜¯å¯¹å›¾ç‰‡è¿›è¡Œæ“ä½œ
+		// è·å–æ–‡ä»¶è·¯å¾„
+		String filePath = request.getRealPath("") + "/UploadPhoto/" + picture;
+		String newFilePath = request.getRealPath("") + "/User/UserHeadImage/"
+				+ picture;
+
+		BufferedImage src = ImageIO.read(new File(filePath));
+		// æ—‹è½¬
+		// BufferedImage des = RotateImage.Rotate(src, angle);
+		// è£å‰ª
+		// Test.abscut2(des,newFilePath, x, y, w,
+		// h,des.getWidth(),des.getHeight());
+		// å…¥åº“
+		saveImage(newFilePath);
+		// è·³è½¬é¡µé¢
+		response.sendRedirect("/start/uploadimage.jsp?Picurl=" + picture
+				+ "&step=3");
+
+	}
+
+	private void saveImage(String filePath) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+
+			con = new DBUtil().getConnection();
+			String sql = "";
+			File file = new File(filePath);
+			InputStream photoStream = new FileInputStream(file);
+			sql = "INSERT INTO photo (tp) VALUES(?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setBinaryStream(1, photoStream, (int) file.length());
+			/* pstmt.setInt(2, 5); */
+
+			//æ€ä¹ˆè·å–case_idå€¼å¹¶æ’å…¥
+			// pstmt.setInt(2, "case_id");
+			pstmt.execute();
+
+		} catch (Exception e) {
+			System.err.println("Error");
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-			
-			private void saveImage(String filePath) {
-				 Connection con = null ;
-				 PreparedStatement pstmt = null;
-				 try {
-			          
-			           con= new DBUtil().getConnection();	          
-			           String sql = "";
-			           //FileÊÇ¸öÊ²Ã´¶«Î÷ÄØ£¿£¿£¿
-			           File file = new File(filePath);
-			           InputStream photoStream = new FileInputStream(file);	            
-			           sql = "INSERT INTO photo (tp) VALUES(?)";
-			           pstmt = con.prepareStatement(sql);
-			           pstmt.setBinaryStream(1,photoStream,(int)file.length()); 
-			           /*pstmt.setInt(2, 5);*/
-			           
-					//ÔõÃ´»ñÈ¡case_idÖµ²¢²åÈë
-			           //pstmt.setInt(2, "case_id");
-			           pstmt.execute();
-			           
-			        } catch (Exception e) {
-			                System.err.println("Error");
-			                e.printStackTrace();
-			        }finally{
-			        	if(pstmt!=null){
-			        		try {
-								pstmt.close();
-							} catch (SQLException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-			        	}
-			        	if(con!=null){
-			        		try {
-								con.close();
-							} catch (SQLException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-			        	}
-			        }
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-			
+		}
+	}
 
 	/**
 	 * Initialization of the servlet. <br>
 	 *
-	 * @throws ServletException if an error occurs
+	 * @throws ServletException
+	 *             if an error occurs
 	 */
 	public void init() throws ServletException {
 		// Put your code here

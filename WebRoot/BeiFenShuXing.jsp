@@ -44,14 +44,14 @@
 					name="storage_id" id="experttype">
 						<%
 							Class.forName("com.mysql.jdbc.Driver").newInstance();
-							Connection con = DriverManager
-									.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="
-											+ db.DBInfo.getPassword());
-							String op = request.getParameter("op");
-							Statement s = con.createStatement();
-							String sql = "SELECT * FROM storage";
-							ResultSet rs = s.executeQuery(sql);
-							while (rs.next()) {
+											Connection con = DriverManager
+													.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="
+															+ sdu.edu.scene.db.DBInfo.getPassword());
+											String op = request.getParameter("op");
+											Statement s = con.createStatement();
+											String sql = "SELECT * FROM storage";
+											ResultSet rs = s.executeQuery(sql);
+											while (rs.next()) {
 						%>
 						<option value="<%=rs.getString("id")%>">
 							<%=rs.getString("name")%>

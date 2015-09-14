@@ -98,7 +98,7 @@ function resize(obj)
 
 <%
 	Class.forName("com.mysql.jdbc.Driver");  
-	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="+db.DBInfo.getPassword());  
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="+sdu.edu.scene.db.DBInfo.getPassword());  
 	Statement stmt=con.createStatement();  
 	String sql;
 	int	c_num, p_num;

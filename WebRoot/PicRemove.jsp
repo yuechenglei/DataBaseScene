@@ -9,20 +9,20 @@
 <body>
 	<%
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection con = DriverManager
-				.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="
-						+ db.DBInfo.getPassword());
-		Statement stmt = con.createStatement();
-		String sql, case_id, photo_id, client_width;
-		int client_column;
-		case_id = request.getParameter("case_id");
-		client_width = request.getParameter("client_width");
-		client_column = (Integer.parseInt(client_width) - 90) / 120;
+			Connection con = DriverManager
+			.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="
+					+ sdu.edu.scene.db.DBInfo.getPassword());
+			Statement stmt = con.createStatement();
+			String sql, case_id, photo_id, client_width;
+			int client_column;
+			case_id = request.getParameter("case_id");
+			client_width = request.getParameter("client_width");
+			client_column = (Integer.parseInt(client_width) - 90) / 120;
 
-		sql = "select icon, id, case_id from photo where case_id="
-				+ case_id;
-		ResultSet rs = stmt.executeQuery(sql);
-		int k = 0;
+			sql = "select icon, id, case_id from photo where case_id="
+			+ case_id;
+			ResultSet rs = stmt.executeQuery(sql);
+			int k = 0;
 	%>
 	<form name="form1" id="form1" method="post" action="jspcl/PicKill.jsp">
 		<table>

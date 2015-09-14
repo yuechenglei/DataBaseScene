@@ -31,7 +31,7 @@ public class File {
 	public static final int SAVEAS_AUTO = 0;
 	public static final int SAVEAS_VIRTUAL = 1;
 	public static final int SAVEAS_PHYSICAL = 2;
-	//¹¹Ôìº¯Êý
+	//æž„é€ å‡½æ•°
 	File() {
 		m_startData = 0;
 		m_endData = 0;

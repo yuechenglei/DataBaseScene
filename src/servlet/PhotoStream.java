@@ -5,14 +5,16 @@ import java.io.PrintWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.awt.image.*;
+
 import javax.imageio.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import db.scene;
-import photo.FilterPhoto;
-import photo.PhotoAttributes;
+
+import sdu.edu.scene.db.scene;
+import sdu.edu.scene.photo.FilterPhoto;
+import sdu.edu.scene.photo.PhotoAttributes;
 
 public class PhotoStream extends HttpServlet {
 
@@ -56,7 +58,7 @@ public class PhotoStream extends HttpServlet {
 	 	ImageIO.write(bimage, "jpeg", os); 
 	 	os.flush();
 	 	os.close();
-//	 	out.clear();			//Çå¿Õ»º´æµÄÄÚÈÝ¡£
+//	 	out.clear();			/
 //		out = pageContext.pushBody();		
 	}
 

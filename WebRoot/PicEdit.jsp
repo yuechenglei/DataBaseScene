@@ -10,11 +10,11 @@
 
 	Class.forName("com.mysql.jdbc.Driver");
 	Connection conn = DriverManager
-			.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="+db.DBInfo.getPassword());
+	.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="+sdu.edu.scene.db.DBInfo.getPassword());
 	Statement stmt = conn.createStatement();
 	String sql;
 	sql = "select picture, id, clip_left, clip_top, clip_width, clip_height, angle, saturation, brightness, contrast from photo where id="
-			+ photo_id;
+	+ photo_id;
 	ResultSet rs = stmt.executeQuery(sql);
 	rs.next();
 	String clip_left = rs.getString("clip_left");

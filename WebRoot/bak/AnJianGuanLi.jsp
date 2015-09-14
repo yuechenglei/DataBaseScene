@@ -75,44 +75,45 @@ if (op.equals("2") || op.equals("3"))
 %>
 		</tr>
 			
-<%  //把表格第二行的显示放到while循环中，就可以根据查询结果画出表格了。参数则放在<td>内的相应位置。 
+<%
+				//把表格第二行的显示放到while循环中，就可以根据查询结果画出表格了。参数则放在<td>内的相应位置。 
 
 
-	String className="com.mysql.jdbc.Driver";
-	String url="jdbc:mysql://localhost:3306/scene";
-	String user="root";
-	String password=db.DBInfo.getPassword();
-	Class.forName(className);
-	Connection conn=DriverManager.getConnection(url, user, password);
-	String id=request.getParameter("id");
-	Statement s=conn.createStatement();
+				String className="com.mysql.jdbc.Driver";
+				String url="jdbc:mysql://localhost:3306/scene";
+				String user="root";
+				String password=sdu.edu.scene.db.DBInfo.getPassword();
+				Class.forName(className);
+				Connection conn=DriverManager.getConnection(url, user, password);
+				String id=request.getParameter("id");
+				Statement s=conn.createStatement();
 
-	String sql="select name, date, inspector, xkh, id from scene.case "; 
-	String	s1="", s2="", s3="", s4="", ss="", str="";
+				String sql="select name, date, inspector, xkh, id from scene.case "; 
+				String	s1="", s2="", s3="", s4="", ss="", str="";
 
-	ss = "";
-	if (!name.isEmpty()) {
-		str = str + " name='" + name + "'";
-		ss = " AND ";
-	}
-	if (!inspector.isEmpty()) {
-		str = str + ss + "inspector='" + inspector + "'";
-		ss = " AND ";
-	}
+				ss = "";
+				if (!name.isEmpty()) {
+					str = str + " name='" + name + "'";
+					ss = " AND ";
+				}
+				if (!inspector.isEmpty()) {
+					str = str + ss + "inspector='" + inspector + "'";
+					ss = " AND ";
+				}
 
-	if (!date1.isEmpty()) {
-		str = str + ss + "date>='" + date1 + "'";
-		ss = " AND ";
-	}
-	if (!date2.isEmpty())
-		str = str + ss + "date<='" + date2 + "'";
-	if (!str.isEmpty())
-		sql = sql + " where " + str;
+				if (!date1.isEmpty()) {
+					str = str + ss + "date>='" + date1 + "'";
+					ss = " AND ";
+				}
+				if (!date2.isEmpty())
+					str = str + ss + "date<='" + date2 + "'";
+				if (!str.isEmpty())
+					sql = sql + " where " + str;
 
-System.out.println(sql);
-	ResultSet rs=s.executeQuery(sql); 
-	while (rs.next()) {
-%> 
+			System.out.println(sql);
+				ResultSet rs=s.executeQuery(sql); 
+				while (rs.next()) {
+			%> 
   		<tr height="30" > 
     		<td ><%=rs.getString(1) %></td> 
     		<td ><%=rs.getString(2) %></td> 

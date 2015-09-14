@@ -1,7 +1,6 @@
 package com.servlet;
 
 import java.awt.image.BufferedImage;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,12 +21,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.util.CutImage;
-import com.util.DBUtil;
-import com.util.FilterImage;
-import com.util.HSLFilter;
-import com.util.ImageChange;
-import com.util.ScaleImage;
+import sdu.edu.scene.util.CutImage;
+import sdu.edu.scene.util.DBUtil;
+import sdu.edu.scene.util.FilterImage;
+import sdu.edu.scene.util.HSLFilter;
+import sdu.edu.scene.util.ImageChange;
+import sdu.edu.scene.util.ScaleImage;
 
 public class SaveCutImage extends HttpServlet {
 	/**
@@ -62,7 +61,7 @@ public class SaveCutImage extends HttpServlet {
 		String icon = "";
 		String id = request.getParameter("id");
 		String caseid = request.getParameter("caseid");
-		// ÏÈ°ÑÊı¾İ¿âÖĞµÄÎÄ¼şµ¼³öµ½Ó²ÅÌÖĞ
+		//å…ˆæŠŠæ•°æ®åº“ä¸­çš„æ–‡ä»¶å¯¼å‡ºåˆ°ç¡¬ç›˜ä¸­
 		String fileName = request.getRealPath("/") + sPath + "/tempImage.jpg";
 		Connection con;
 		Statement stmt;
@@ -75,7 +74,7 @@ public class SaveCutImage extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager
 					.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="
-							+ db.DBInfo.getPassword());
+							+ sdu.edu.scene.db.DBInfo.getPassword());
 			stmt = con.createStatement();
 			String sql;
 			sql = "select tp_new,icon from photo where id=" + id;
@@ -90,7 +89,7 @@ public class SaveCutImage extends HttpServlet {
 				}
 			}
 			rs.close();
-			// Í¼Æ¬Ğı×ª
+			//å›¾ç‰‡æ—‹è½¬×ª
 			if (Math.round(imgrol) > 0) {
 				if (in != null) {
 					in.close();
@@ -105,14 +104,14 @@ public class SaveCutImage extends HttpServlet {
 				ImageIO.write(javax.imageio.ImageIO.read(in), "jpg", new File(
 						fileName));
 			}
-			// ±£´æ²Ã¼ôºóµÄÍ¼Æ¬
+			//ä¿å­˜è£å‰ªåçš„å›¾ç‰‡
 			CutImage o = new CutImage(Math.round(x / scale), Math.round(y
 					/ scale), Math.round(width / scale), Math.round(height
 					/ scale));
 			o.setSrcpath(fileName);
 			o.setSubpath(fileName);
 			o.cut();
-			// ÁÁ¶È¶Ô±È¶ÈÉèÖÃ ±¥ºÍ¶È
+			 //äº®åº¦å¯¹æ¯”åº¦è®¾ç½® é¥±å’Œåº¦
 			float brightness = Float
 					.valueOf(request.getParameter("liandu") != null ? request
 							.getParameter("liandu") : "0");
@@ -127,21 +126,21 @@ public class SaveCutImage extends HttpServlet {
 			if (Math.round(bhd) != 0 || Math.round(brightness) != 0) {
 				HSLFilter h = new HSLFilter();
 				if (Math.round(bhd) != 0) {
-					h.setSaturation(bhd);// ±¥ºÍ¶È
+					h.setSaturation(bhd);//é¥±å’Œåº¦
 				}
 				if (Math.round(brightness) != 0) {
-					h.setLightness(brightness);// ÁÁ¶È
+					h.setLightness(brightness);// äº®åº¦
 				}
 				srcImage = h.filter(srcImage, srcImage);
 				ImageIO.write(srcImage, "jpg", new File(fileName));
 			}
 			if (Math.round(contrast) != 1) {
 				FilterImage f = new FilterImage();
-				f.setContrast(contrast);// ¶Ô±È¶È
+				f.setContrast(contrast);// ï¿½Ô±È¶ï¿½
 				srcImage = f.filter(srcImage, srcImage);
 			}
 			ImageIO.write(srcImage, "jpg", new File(fileName));
-			// ±£´æÏà¹ØÊı¾İ
+			 //ä¿å­˜ç›¸å…³æ•°æ®
 			str = new FileInputStream(fileName);
 			sql = "update photo set tp_new = ?, width=?, height=?, bhd=?, angle=?, dbd=?, ld=?, x1=?,y1=? where id="
 					+ id;
@@ -157,7 +156,7 @@ public class SaveCutImage extends HttpServlet {
 			pstmt.setFloat(8, Math.round(x / scale));
 			pstmt.setFloat(9, Math.round(y / scale));
 			pstmt.execute();
-			// Éú³ÉĞÂµÄËõÂÔÍ¼
+			//ç”Ÿæˆæ–°çš„ç¼©ç•¥å›¾
 			String newFileName = request.getRealPath("") + icon;
 			in.close();
 			in = new FileInputStream(fileName);
@@ -177,7 +176,7 @@ public class SaveCutImage extends HttpServlet {
 			if (str != null) {
 				str.close();
 			}
-			// É¾³ıÁÙÊ±ÎÄ¼ş
+			//åˆ é™¤ä¸´æ—¶æ–‡ä»¶
 			File file = new File(fileName);
 			file.delete();
 			response.sendRedirect("/start/PicEdit.jsp?id=" + id + "&caseid="

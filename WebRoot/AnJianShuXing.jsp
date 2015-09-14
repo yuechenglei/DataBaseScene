@@ -59,7 +59,7 @@ function func()
 </head>
   
 <body text="#000000" style="background-color:#eee;margin:100px,0px,0px,0px;">
-<% 
+<%
 	String name, xkh, inspector, op, date_anfa, place, desc;
 	String id=request.getParameter("id");
 	if (id.equals("-1")) {
@@ -75,7 +75,7 @@ function func()
 		String className="com.mysql.jdbc.Driver";
 		String url="jdbc:mysql://localhost:3306/scene";
 		String user="root";
-		String password=db.DBInfo.getPassword();
+		String password=sdu.edu.scene.db.DBInfo.getPassword();
 		Connection conn; 
 		Statement st;
 		Class.forName(className);

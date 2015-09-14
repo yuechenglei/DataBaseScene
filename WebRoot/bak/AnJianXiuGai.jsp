@@ -57,43 +57,43 @@ function func()
 			<td style="background-color: rgb(128, 255, 255);" valign="top">操作</td>			
 		</tr>
 			
-<% 
-	String name=request.getParameter("name");
-	String inspector=request.getParameter("inspector");
-	String date1=request.getParameter("date1");
-	String date2=request.getParameter("date2");
-	String className="com.mysql.jdbc.Driver";
-	String url="jdbc:mysql://localhost:3306/scene";
-	String user="root";
-	String password=db.DBInfo.getPassword();
-	Class.forName(className);
-	Connection conn=DriverManager.getConnection(url, user, password);
-	String id=request.getParameter("id");
-	Statement s=conn.createStatement();
+<%
+				String name=request.getParameter("name");
+				String inspector=request.getParameter("inspector");
+				String date1=request.getParameter("date1");
+				String date2=request.getParameter("date2");
+				String className="com.mysql.jdbc.Driver";
+				String url="jdbc:mysql://localhost:3306/scene";
+				String user="root";
+				String password=sdu.edu.scene.db.DBInfo.getPassword();
+				Class.forName(className);
+				Connection conn=DriverManager.getConnection(url, user, password);
+				String id=request.getParameter("id");
+				Statement s=conn.createStatement();
 
-	String sql="select name, date, inspector, xkh, id from scene.case "; 
-	String	s1="", s2="", s3="", s4="", ss="", str="";
+				String sql="select name, date, inspector, xkh, id from scene.case "; 
+				String	s1="", s2="", s3="", s4="", ss="", str="";
 
-	ss = "";
-	if (!name.isEmpty()) {
-		str = str + " name='" + name + "'";
-		ss = " AND ";
-	}
-	if (!inspector.isEmpty()) {
-		str = str + ss + "inspector='" + inspector + "'";
-		ss = " AND ";
-	}
-	if (!date1.isEmpty()) {
-		str = str + ss + "date>='" + date1 + "'";
-		ss = " AND ";
-	}
-	if (!date2.isEmpty())
-		str = str + ss + "date<='" + date2 + "'";
-	if (!str.isEmpty())
-		sql = sql + " where " + str;
+				ss = "";
+				if (!name.isEmpty()) {
+					str = str + " name='" + name + "'";
+					ss = " AND ";
+				}
+				if (!inspector.isEmpty()) {
+					str = str + ss + "inspector='" + inspector + "'";
+					ss = " AND ";
+				}
+				if (!date1.isEmpty()) {
+					str = str + ss + "date>='" + date1 + "'";
+					ss = " AND ";
+				}
+				if (!date2.isEmpty())
+					str = str + ss + "date<='" + date2 + "'";
+				if (!str.isEmpty())
+					sql = sql + " where " + str;
 
-	ResultSet rs=s.executeQuery(sql); 
-%>
+				ResultSet rs=s.executeQuery(sql);
+			%>
 <%
     while (rs.next()) {
 %> 

@@ -132,45 +132,45 @@ padding:7px 10px;
 			<%
 				//把表格第二行的显示放到while循环中，就可以根据查询结果画出表格了。参数则放在<td>内的相应位置。 
 
-				String className = "com.mysql.jdbc.Driver";
-				String url = "jdbc:mysql://localhost:3306/scene";
-				String user = "root";
-				String password = db.DBInfo.getPassword();
-				Class.forName(className);
-				Connection conn = DriverManager.getConnection(url, user, password);
-				String id = request.getParameter("id");
-				Statement s = conn.createStatement();
+					String className = "com.mysql.jdbc.Driver";
+					String url = "jdbc:mysql://localhost:3306/scene";
+					String user = "root";
+					String password = sdu.edu.scene.db.DBInfo.getPassword();
+					Class.forName(className);
+					Connection conn = DriverManager.getConnection(url, user, password);
+					String id = request.getParameter("id");
+					Statement s = conn.createStatement();
 
-				//String sql = "select scene.case.name, date, inspector, xkh, scene.case.id ,count(case_id) from scene.case,scene.photo ";
-				String sql = "select cc.name, cc.date, cc.inspector, cc.xkh, cc.id ,pp.num "
-						+ "from scene.case cc left join (select case_id,count(case_id) as num from scene.photo group by case_id) pp on pp.case_id=cc.id";
-				String s1 = "", s2 = "", s3 = "", s4 = "", ss = "", str = "";
+					//String sql = "select scene.case.name, date, inspector, xkh, scene.case.id ,count(case_id) from scene.case,scene.photo ";
+					String sql = "select cc.name, cc.date, cc.inspector, cc.xkh, cc.id ,pp.num "
+							+ "from scene.case cc left join (select case_id,count(case_id) as num from scene.photo group by case_id) pp on pp.case_id=cc.id";
+					String s1 = "", s2 = "", s3 = "", s4 = "", ss = "", str = "";
 
-				ss = "";
-				if (!name.isEmpty()) {
-					str = str + " cc.name='" + name + "'";
-					ss = " AND ";
-				}
-				if (!inspector.isEmpty()) {
-					str = str + ss + "cc.inspector='" + inspector + "'";
-					ss = " AND ";
-				}
-				if (!xkh.isEmpty()) {
-					str = str + ss + "cc.xkh='" + xkh + "'";
-					ss = " AND ";
-				}
+					ss = "";
+					if (!name.isEmpty()) {
+						str = str + " cc.name='" + name + "'";
+						ss = " AND ";
+					}
+					if (!inspector.isEmpty()) {
+						str = str + ss + "cc.inspector='" + inspector + "'";
+						ss = " AND ";
+					}
+					if (!xkh.isEmpty()) {
+						str = str + ss + "cc.xkh='" + xkh + "'";
+						ss = " AND ";
+					}
 
-				if (!date1.isEmpty()) {
-					str = str + ss + "cc.date>='" + date1 + "'";
-					ss = " AND ";
-				}
-				if (!date2.isEmpty())
-					str = str + ss + "cc.date<='" + date2 + "'";
-				if (!str.isEmpty())
-					sql = sql + " where " + str + "";
+					if (!date1.isEmpty()) {
+						str = str + ss + "cc.date>='" + date1 + "'";
+						ss = " AND ";
+					}
+					if (!date2.isEmpty())
+						str = str + ss + "cc.date<='" + date2 + "'";
+					if (!str.isEmpty())
+						sql = sql + " where " + str + "";
 
-				ResultSet rs = s.executeQuery(sql);
-				while (rs.next()) {
+					ResultSet rs = s.executeQuery(sql);
+					while (rs.next()) {
 			%>
 			<tr height="30">
 				<%

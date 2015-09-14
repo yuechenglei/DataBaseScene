@@ -29,7 +29,7 @@ function func()
 }
 </script>
 
-<% 
+<%
 	String name=request.getParameter("name");
 	String inspector=request.getParameter("inspector");
 	String date1=request.getParameter("date1");
@@ -38,7 +38,7 @@ function func()
 	String className="com.mysql.jdbc.Driver";
 	String url="jdbc:mysql://localhost:3306/scene";
 	String user="root";
-	String password=db.DBInfo.getPassword();
+	String password=sdu.edu.scene.db.DBInfo.getPassword();
 	Class.forName(className);
 	Connection conn=DriverManager.getConnection(url, user, password);
 	int	k=0;
@@ -65,7 +65,7 @@ function func()
 	if (!str.isEmpty())
 		sql = sql + " where " + str;
 
-	ResultSet rs=s.executeQuery(sql); 
+	ResultSet rs=s.executeQuery(sql);
 %>
 </head>
   

@@ -23,12 +23,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
 <body>
-<% 
+<%
 	int ret;
 	String className="com.mysql.jdbc.Driver";
 	String url="jdbc:mysql://localhost:3306/scene";
 	String user="root";
-	String password=db.DBInfo.getPassword();
+	String password=sdu.edu.scene.db.DBInfo.getPassword();
 	Connection conn; 
     Statement st;
 	Class.forName(className);
@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	ret = ret + st.executeUpdate(sql);
 	String	arg = String.valueOf(ret);
 	response.sendRedirect("BenchPrompt.jsp?result="+arg);
-	conn.close();   //关闭数据库连接   
+	conn.close();   //关闭数据库连接
 %>	  
 sql=<%=sql %>    
   </body>

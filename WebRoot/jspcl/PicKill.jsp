@@ -1,7 +1,7 @@
 <%@ page language="java"
 	import="java.util.*,java.sql.*, java.text.SimpleDateFormat"
 	pageEncoding="UTF-8"%>
-<%@ page import="dao.LogDAO"%>
+<%@ page import="sdu.edu.scene.dao.LogDAO"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -30,7 +30,7 @@
 	String className = "com.mysql.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/scene";
 	String user = "root";
-	String password = db.DBInfo.getPassword();
+	String password = sdu.edu.scene.db.DBInfo.getPassword();
 	Connection conn;
 	Statement st;
 	Class.forName(className);

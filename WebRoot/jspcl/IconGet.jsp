@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
 <%
 	Class.forName("com.mysql.jdbc.Driver");  
-	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="+db.DBInfo.getPassword());  
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="+sdu.edu.scene.db.DBInfo.getPassword());  
 	Statement st = con.createStatement();  
 	String sql, photo_id;
 	ResultSet rs;

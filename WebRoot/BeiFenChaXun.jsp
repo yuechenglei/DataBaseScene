@@ -35,11 +35,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<td ><font color="#333">文件名</font></td>
 			<td ><font color="#333">注释</font></td>
 		</tr>
-<% 
+<%
 	String className="com.mysql.jdbc.Driver";
 	String url="jdbc:mysql://localhost:3306/scene";
 	String user="root";
-	String password=db.DBInfo.getPassword(), sname;
+	String password=sdu.edu.scene.db.DBInfo.getPassword(), sname;
 	Class.forName(className);
 	Connection conn=DriverManager.getConnection(url, user, password);
 	Statement s = conn.createStatement();

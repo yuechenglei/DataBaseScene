@@ -25,25 +25,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	<%
   		String id = request.getParameter("id");
-    	String className="com.mysql.jdbc.Driver";
-    	String url="jdbc:mysql://localhost:3306/scene";
-    	String user="root";
-    	String password=db.DBInfo.getPassword();
-    	Connection conn; 
-    	Statement st;
-    	Class.forName(className);
-    	conn=DriverManager.getConnection(url, user, password);
-    	String sql = "select * from scene.case where id='"+id+"'";
-    	st = conn.createStatement();
-    	ResultSet rs = st.executeQuery(sql);
-    	rs.next();
-    	String name = rs.getString(2);
-    	String date = rs.getString(3);
-    	String inspector = rs.getString(4);
-    	String xkh = rs.getString(5);
-    	String date_anfa = rs.getString(8);
-    	String place = rs.getString(9);
-    	String desc = rs.getString(10);
+  	    	String className="com.mysql.jdbc.Driver";
+  	    	String url="jdbc:mysql://localhost:3306/scene";
+  	    	String user="root";
+  	    	String password=sdu.edu.scene.db.DBInfo.getPassword();
+  	    	Connection conn; 
+  	    	Statement st;
+  	    	Class.forName(className);
+  	    	conn=DriverManager.getConnection(url, user, password);
+  	    	String sql = "select * from scene.case where id='"+id+"'";
+  	    	st = conn.createStatement();
+  	    	ResultSet rs = st.executeQuery(sql);
+  	    	rs.next();
+  	    	String name = rs.getString(2);
+  	    	String date = rs.getString(3);
+  	    	String inspector = rs.getString(4);
+  	    	String xkh = rs.getString(5);
+  	    	String date_anfa = rs.getString(8);
+  	    	String place = rs.getString(9);
+  	    	String desc = rs.getString(10);
   	%>
   	
   	<div name="main">

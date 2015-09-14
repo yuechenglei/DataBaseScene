@@ -22,29 +22,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<%
 		int	state;
-		String account=request.getParameter("account");
-		String password=request.getParameter("password");
+			String account=request.getParameter("account");
+			String password=request.getParameter("password");
 
-		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="+db.DBInfo.getPassword());
-		Statement s=con.createStatement();
-		String sql="select id, password, account from inspector where account="+account;
-		ResultSet rs=s.executeQuery(sql);
-		if(rs.next())
-			if(rs.getString("password").equals(password)) {
-				state = 1;
-				session.setAttribute("LoginId", rs.getString("id"));
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="+sdu.edu.scene.db.DBInfo.getPassword());
+			Statement s=con.createStatement();
+			String sql="select id, password, account from inspector where account="+account;
+			ResultSet rs=s.executeQuery(sql);
+			if(rs.next())
+		if(rs.getString("password").equals(password)) {
+			state = 1;
+			session.setAttribute("LoginId", rs.getString("id"));
+		}
+			 	else
+			state = 2;
+			else
+		state = 3;
+			rs.close();
+			s.close();
+			con.close();
+			if (state==2 || state==3) {
+		response.sendRedirect("login.jsp?first=false");
 			}
-		 	else
-				state = 2;
-		else
-			state = 3;
-		rs.close();
-		s.close();
-		con.close();
-		if (state==2 || state==3) {
-			response.sendRedirect("login.jsp?first=false");
-		} 
 	%>
   <frameset cols="14%,"  border="2">
   	<frame src="menu.jsp" name="menu" scrolling="yes" />	

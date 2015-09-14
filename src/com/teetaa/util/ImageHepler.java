@@ -12,14 +12,14 @@ import javax.imageio.ImageIO;
 
 public class ImageHepler {
 	/**
-	 * »æÖÆËõ·ÅÍ¼
+	 * ç»˜åˆ¶ç¼©æ”¾å›¾
 	 * 
 	 * @param img
-	 *            Ô­Í¼
+	 *            åŸå›¾
 	 * @param width
-	 *            Ä¿±êÍ¼¿í
+	 *            ç›®æ ‡å›¾å®½
 	 * @param height
-	 *            Ä¿±êÍ¼¸ß
+	 *            ç›®æ ‡å›¾é«˜
 	 * @return
 	 */
 	private static BufferedImage makeThumbnail(Image img, int width, int height) {
@@ -33,14 +33,14 @@ public class ImageHepler {
 	}
 
 	/**
-	 * ²Ã¼ôÍ¼Æ¬
+	 * è£å‰ªå›¾ç‰‡
 	 * 
 	 * @param image
-	 *            Ô­Í¼
+	 *            åŸå›¾
 	 * @param subImageBounds
-	 *            ²Ã¼ô¾ØĞÎ¿ò
+	 *            è£å‰ªçŸ©å½¢æ¡†
 	 * @param subImageFile
-	 *            ±£´æÂ·¾¶
+	 *            ä¿å­˜è·¯å¾„
 	 * @throws IOException
 	 */
 	private static void saveSubImage(BufferedImage image,
@@ -76,18 +76,18 @@ public class ImageHepler {
 	}
 
 	/**
-	 * Í¼Æ¬Ëõ·Å²Ã¼ô
+	 * å›¾ç‰‡ç¼©æ”¾è£å‰ª
 	 * 
 	 * @param srcImageFile
-	 *            Ô­Í¼±£´æÂ·¾¶
+	 *            åŸå›¾ä¿å­˜è·¯å¾„
 	 * @param descDir
-	 *            Ä¿±êÍ¼±£´æÂ·¾¶
+	 *            ç›®æ ‡å›¾ä¿å­˜è·¯å¾„
 	 * @param width
-	 *            Ëõ·ÅºóÍ¼Æ¬¿í¶È
+	 *            ç¼©æ”¾åå›¾ç‰‡å®½åº¦
 	 * @param height
-	 *            Ëõ·ÅºóÍ¼Æ¬¸ß¶È
+	 *            ç¼©æ”¾åå›¾ç‰‡é«˜åº¦
 	 * @param rect
-	 *            ²Ã¼ô¾ØĞÎ¿ò
+	 *            è£å‰ªçŸ©å½¢æ¡†
 	 * @throws IOException
 	 */
 	public static void cut(String srcImageFile, String descDir, int width,

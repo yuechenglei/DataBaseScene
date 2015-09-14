@@ -34,7 +34,7 @@ function resize(obj)
 //	out.print("<td colspan=\"3\" align=\"center\"><img id=\"photo\" width="+client_width+" src='/start/servlet/PhotoStream?photo_id="+photo_id+"'></td>");
 
 	Class.forName("com.mysql.jdbc.Driver");  
-	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="+db.DBInfo.getPassword());  
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/scene?user=root&password="+sdu.edu.scene.db.DBInfo.getPassword());  
 	Statement stmt=con.createStatement();  
 	sql= "select id, para from photo where id="+photo_id;  
 	ResultSet rs=stmt.executeQuery(sql);

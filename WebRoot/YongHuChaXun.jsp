@@ -47,16 +47,16 @@ table {
 			</tr>
 			<%
 				String className = "com.mysql.jdbc.Driver";
-				String url = "jdbc:mysql://localhost:3306/scene";
-				String user = "root";
-				String password = db.DBInfo.getPassword();
-				Class.forName(className);
-				Connection conn = DriverManager.getConnection(url, user, password);
-				Statement s = conn.createStatement();
+					String url = "jdbc:mysql://localhost:3306/scene";
+					String user = "root";
+					String password = sdu.edu.scene.db.DBInfo.getPassword();
+					Class.forName(className);
+					Connection conn = DriverManager.getConnection(url, user, password);
+					Statement s = conn.createStatement();
 
-				String sql = "select account, name, id from scene.inspector";
-				ResultSet rs = s.executeQuery(sql);
-				while (rs.next()) {
+					String sql = "select account, name, id from scene.inspector";
+					ResultSet rs = s.executeQuery(sql);
+					while (rs.next()) {
 			%>
 			<tr>
 				<td><%=rs.getString(1)%></td>
