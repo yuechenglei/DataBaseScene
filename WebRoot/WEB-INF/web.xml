@@ -18,57 +18,57 @@
 	</filter-mapping>
 	<servlet>
 		<servlet-name>UpLoadUserHeadImage</servlet-name>
-		<servlet-class>com.servlet.UpLoadUserHeadImage</servlet-class>
+		<servlet-class>sdu.edu.scene.servlet.UpLoadUserHeadImage</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>SaveCutImage</servlet-name>
-		<servlet-class>com.servlet.SaveCutImage</servlet-class>
+		<servlet-class>sdu.edu.scene.servlet.SaveCutImage</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>ZoomImage</servlet-name>
-		<servlet-class>com.servlet.ZoomImage</servlet-class>
+		<servlet-class>sdu.edu.scene.servlet.ZoomImage</servlet-class>
 	</servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>ViewImage</servlet-name>
-    <servlet-class>com.servlet.ViewImage</servlet-class>
+    <servlet-class>sdu.edu.scene.servlet.ViewImage</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>charutupian</servlet-name>
-    <servlet-class>com.servlet.charutupian</servlet-class>
+    <servlet-class>sdu.edu.scene.servlet.charutupian</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>bianjitupian</servlet-name>
-    <servlet-class>com.servlet.bianjitupian</servlet-class>
+    <servlet-class>sdu.edu.scene.servlet.bianjitupian</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>PhotoInsert</servlet-name>
-    <servlet-class>com.servlet.PhotoInsert</servlet-class>
+    <servlet-class>sdu.edu.scene.servlet.PhotoInsert</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>PhotoAppend</servlet-name>
-    <servlet-class>com.servlet.PhotoAppend</servlet-class>
+    <servlet-class>sdu.edu.scene.servlet.PhotoAppend</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>PicsUpload</servlet-name>
-    <servlet-class>servlet.PicsUpload</servlet-class>
+    <servlet-class>sdu.edu.scene.servlet.PicsUpload</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>PhotoStream</servlet-name>
-    <servlet-class>servlet.PhotoStream</servlet-class>
+    <servlet-class>sdu.edu.scene.servlet.PhotoStream</servlet-class>
   </servlet>
 
   <servlet>
@@ -79,7 +79,7 @@
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>Beifen</servlet-name>
-    <servlet-class>servlet.Beifen</servlet-class>
+    <servlet-class>sdu.edu.scene.servlet.Beifen</servlet-class>
   </servlet>
 
 

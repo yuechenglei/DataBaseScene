@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/com/servlet/ZoomImage.java=UTF-8
 encoding//src/sdu/edu/scene/db/scene.java=UTF-8
+encoding//src/sdu/edu/scene/servlet/PicsUpload.java=UTF-8
+encoding//src/sdu/edu/scene/servlet/ZoomImage.java=UTF-8
 encoding//src/sdu/edu/scene/util/CharacterEncodingFilter.java=UTF-8
-encoding//src/servlet/PicsUpload.java=UTF-8

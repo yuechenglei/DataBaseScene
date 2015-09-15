@@ -1,26 +1,24 @@
 package sdu.edu.scene.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
-import java.sql.ResultSet;
-
-import com.jspsmart.upload.*;
-
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.awt.image.*;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Iterator;
 
-import javax.imageio.*;
+import javax.imageio.ImageIO;
 
 import sdu.edu.scene.dao.LogDAO;
 import sdu.edu.scene.photo.PhotoAttributes;
-
-import java.io.InputStream;
-import java.util.Iterator;
+import sdu.edu.scene.upload.File;
+import sdu.edu.scene.upload.Files;
 
 import com.drew.imaging.jpeg.JpegMetadataReader;
 import com.drew.imaging.jpeg.JpegProcessingException;
