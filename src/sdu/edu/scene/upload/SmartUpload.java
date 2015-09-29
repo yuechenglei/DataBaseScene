@@ -152,11 +152,11 @@ public class SmartUpload {
 				if (m_deniedFilesList.contains(s5))
 					throw new SecurityException(
 							"The extension of the file is denied to be uploaded (1015).");
-
+/*
 				if (!m_allowedFilesList.isEmpty()
 						&& !m_allowedFilesList.contains(s5))
 					throw new SecurityException(
-							"The extension of the file is not allowed to be uploaded (1010).");
+							"The extension of the file is not allowed to be uploaded (1010).");*/
 				if (m_maxFileSize > 0L
 						&& (long) ((m_endData - m_startData) + 1) > m_maxFileSize)
 					throw new SecurityException(

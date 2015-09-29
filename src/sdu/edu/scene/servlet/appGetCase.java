@@ -2,25 +2,22 @@ package sdu.edu.scene.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.awt.image.*;
 
-import javax.imageio.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sdu.edu.scene.db.scene;
-import sdu.edu.scene.photo.FilterPhoto;
-import sdu.edu.scene.photo.PhotoAttributes;
+import sdu.edu.scene.dao.CaseDAO;
 
-public class PhotoStream extends HttpServlet {
+public class appGetCase extends HttpServlet {
 
-	private String photo_id;
-
-	private static final long serialVersionUID = 1L;
+	/**
+	 * Constructor of the object.
+	 */
+	public appGetCase() {
+		super();
+	}
 
 	/**
 	 * Destruction of the servlet. <br>
@@ -47,23 +44,19 @@ public class PhotoStream extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		photo_id = request.getParameter("photo_id");
-
-		InputStream is;
-		BufferedImage bimage;
-		scene s = new scene();
-		PhotoAttributes pa = new PhotoAttributes();
-		is = s.getPhoto(photo_id, pa);
-
-		FilterPhoto fp = new FilterPhoto();
-		bimage = fp.getFilteredImage(is, pa);
-
-		OutputStream os = response.getOutputStream();
-		ImageIO.write(bimage, "jpeg", os);
-		os.flush();
-		os.close();
-		// out.clear(); /
-		// out = pageContext.pushBody();
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+		out.println("<HTML>");
+		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
+		out.println("  <BODY>");
+		out.print("    This is ");
+		out.print(this.getClass());
+		out.println(", using the GET method");
+		out.println("  </BODY>");
+		out.println("</HTML>");
+		out.flush();
+		out.close();
 	}
 
 	/**
@@ -85,16 +78,13 @@ public class PhotoStream extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		String xkh = request.getParameter("xkh");
+		System.out.println(xkh);
+		String getCase = new CaseDAO().getCase(xkh);
 		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the POST method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
+		out.println(getCase);
 		out.flush();
 		out.close();
 	}

@@ -17,7 +17,6 @@ public class CharacterEncodingFilter implements Filter {
 		if(encodingString!=null){
 			//注意MyEclipse的版本不同，方法doFilter的参数有可能不同，
 			//设置字符编码，认准其类型为ServletRequest即可
-			// 我用的是MyEclipse10
 			arg0.setCharacterEncoding(encodingString); 
 		}
 		arg2.doFilter(arg0, arg1);
@@ -27,7 +26,6 @@ public class CharacterEncodingFilter implements Filter {
 	public void init(FilterConfig arg0) throws ServletException {
 		//注意MyEclipse的版本不同，方法init的参数有可能不同
 		//这里的参数为arg0
-		// 我用的是MyEclipse10
 		//从配置文件中取编码
 		this.encodingString=arg0.getInitParameter("encoding").trim();
 		if(encodingString==null){

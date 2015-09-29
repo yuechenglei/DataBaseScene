@@ -5,6 +5,12 @@ import java.io.IOException;
 import java.sql.*;
 
 import sdu.edu.scene.util.DBUtil;
+/**
+ * 对photo表
+ * 的数据库的操作DAO层
+ * @author Halo
+ *
+ */
 public class PhotoDAO {
 
 	Connection conn = null;

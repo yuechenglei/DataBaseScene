@@ -11,7 +11,7 @@ import sdu.edu.scene.db.scene;
 import sdu.edu.scene.upload.Files;
 import sdu.edu.scene.upload.SmartUpload;
 
-public class PicsUpload extends HttpServlet {
+public class appAddphoto extends HttpServlet {
 
 	/**
 	 * 
@@ -31,6 +31,7 @@ public class PicsUpload extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		case_id = request.getParameter("case_id");
+		System.out.println(case_id + "进入");
 		return;
 	}
 
@@ -52,6 +53,7 @@ public class PicsUpload extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("进入");
+		System.out.println(case_id);
 		SmartUpload su = new SmartUpload();
 		su.initialize(getServletConfig(), request, response);
 		try {
@@ -63,20 +65,22 @@ public class PicsUpload extends HttpServlet {
 			su.upload();
 		} catch (Exception e) {
 			java.io.PrintWriter out = response.getWriter();
-			out.print("<script Lanuage='JavaScript'>window.alert('Only jpg, jpeg, JPG, gif are available! ')</script>");
+			//out.print("<script Lanuage='JavaScript'>window.alert('Only jpg, jpeg, JPG, gif are available! ')</script>");
 			e.printStackTrace();
 		}
-		case_id = request.getParameter("case_id");
-		System.out.println(case_id + "进入");
+
 		Files fs = su.getFiles();
 		scene s = new scene();
 		// 检测用户id
+		System.out.println(request.getSession().getId());
+		System.out.println(request.getSession().toString());
+		System.out.println(request.getSession().getAttribute("LoginId"));
 		String user_id1 = (request.getSession().getAttribute("LoginId"))
 				.toString();
+		
 		int user_id = Integer.parseInt(user_id1);
 
 		s.insertPhoto(fs, case_id, user_id);
-		response.sendRedirect("/start/jspcl/BenchPrompt.jsp?result=1002");
 	}
 
 	/**

@@ -31,7 +31,7 @@ function func()
 </head>
   
 <body><div><br></div>
-<form name="Storage" action="StorageChaXun.jsp?">
+<form name="Storage" action="StorageFind.jsp?">
 	<table    width="100%" >
 		<tr height="30" style="background-color: #EEE;">
 			<td align="center" colspan="5">查询条件<strong></strong></td>
@@ -67,7 +67,7 @@ function func()
 	String className="com.mysql.jdbc.Driver";
 	String url="jdbc:mysql://localhost:3306/scene";
 	String user="root";
-	String password="1234";
+	String password="ycl,,123";
 	Class.forName(className);
 	Connection conn=DriverManager.getConnection(url, user, password);
 	String id=request.getParameter("id");

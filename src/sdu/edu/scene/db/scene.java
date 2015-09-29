@@ -31,8 +31,9 @@ public class scene {
 	private Connection conn;
 	private String url = "jdbc:mysql://localhost:3306/scene";
 	private String user = "root";
-	private String password = "ycl,,123";
-//85262660
+	private String password = DBInfo.getPassword();
+
+	// 85262660
 	public Connection openConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -76,6 +77,7 @@ public class scene {
 		}
 	}
 
+	// 把照片插入photo表
 	public boolean insertPhoto(Files fs, String case_id, int user_id) {
 
 		int n;
@@ -171,7 +173,8 @@ public class scene {
 					String newValue = photo_id + "," + "0" + "," + "0" + ","
 							+ "100" + "," + "100" + "," + "0" + "," + "1" + ","
 							+ "1" + "," + "1";
-					new LogDAO().changelog("insert", 0 + "", newValue, user_id,2);
+//					new LogDAO().changelog("insert", 0 + "", newValue, user_id,
+//							2);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

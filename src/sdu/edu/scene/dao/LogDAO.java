@@ -7,6 +7,12 @@ import java.sql.*;
 
 import sdu.edu.scene.util.DBUtil;
 
+/**
+ * å¯¹logè¡¨çš„çš„æ•°æ®åº“çš„æ“ä½œDAOå±‚
+ * 
+ * @author Halo
+ *
+ */
 public class LogDAO {
 
 	Connection conn = null;
@@ -73,7 +79,7 @@ public class LogDAO {
 
 	// å‘llogè¡¨ä¸­æ·»åŠ æ•°æ®
 	public void changelog(String op, String oldvalue, String newvalue,
-			int userid,int obj) {
+			int userid, int obj) {
 
 		conn = DBUtil.getConnection();
 		Date d = new Date();
@@ -87,7 +93,7 @@ public class LogDAO {
 				+ oldvalue
 				+ "','"
 				+ newvalue
-				+ "','" + userid + "','"+obj+"')";
+				+ "','" + userid + "','" + obj + "')";
 		System.out.println(sql);
 		try {
 			st = conn.createStatement();
@@ -97,8 +103,8 @@ public class LogDAO {
 			e.printStackTrace();
 		}
 	}
-	//²éÑ¯log±íËùÓĞĞÅÏ¢
-	public ResultSet query_all(){
+
+	public ResultSet query_all() {
 		conn = DBUtil.getConnection();
 		String sql = "select * from log";
 		try {
@@ -110,45 +116,40 @@ public class LogDAO {
 		}
 		return rs;
 	}
-	
-	public void del_and_rec(int id){
+
+	public void del_and_rec(int id) {
 		conn = DBUtil.getConnection();
-		String sql = "select * from log where id='"+id+"'";
+		String sql = "select * from log where id='" + id + "'";
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
-			if(!rs.next())//Ã»ÓĞÕâÒ»ÁĞ Ö±½Ó·µ»Ø
+			if (!rs.next())//
 				return;
-			else{
+			else {
 				int obj = rs.getInt(7);
 				String operation = rs.getString(3);
 				String oldvalue = rs.getString(4);
 				String newvalue = rs.getString(5);
-				if(obj==1){//»Ö¸´µÄÊÇ°¸¼ş
+				if (obj == 1) {// ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½
 					CaseDAO ca = new CaseDAO();
-					if(operation.equals("insert")){
+					if (operation.equals("insert")) {
 						ca.delete(newvalue);
-					}
-					else if(operation.equals("update")){
+					} else if (operation.equals("update")) {
 						ca.update(oldvalue);
-					}
-					else if(operation.equals("delete")){
+					} else if (operation.equals("delete")) {
 						ca.insert(oldvalue);
+					} else {
+						System.out.println("ï¿½ï¿½LogDAOï¿½ï¿½del_and_recï¿½ï¿½ï¿½ï¿½ï¿½Ğ³ï¿½ï¿½Ö´ï¿½ï¿½ï¿½");
 					}
-					else{
-						System.out.println("ÔÚLogDAOµÄdel_and_rec·½·¨ÖĞ³öÏÖ´íÎó");
-					}
-				}
-				else if(obj==2){//»Ö¸´µÄÊÇÕÕÆ¬µÄÊôĞÔ  ²»ÄÜ»Ö¸´É¾³ıµÄÕÕÆ¬
+				} else if (obj == 2) {
 					PhotoDAO pd = new PhotoDAO();
-					if(operation.equals("update")){
+					if (operation.equals("update")) {
 						pd.update(oldvalue);
 					}
-					
-				}
-				else
+
+				} else
 					return;
-				String sql1 = "delete from log where id='"+id+"'";
+				String sql1 = "delete from log where id='" + id + "'";
 				st.executeUpdate(sql1);
 			}
 		} catch (SQLException e) {
@@ -156,10 +157,11 @@ public class LogDAO {
 			e.printStackTrace();
 		}
 	}
-	//²éÑ¯log±í×î´óµÄidÖµ
-	public int last_id(){
+
+	// ï¿½ï¿½Ñ¯logï¿½ï¿½ï¿½ï¿½ï¿½ï¿½idÖµ
+	public int last_id() {
 		conn = DBUtil.getConnection();
-		int id=0;
+		int id = 0;
 		String sql = "select id from log order by id desc limit 0,1";
 		try {
 			st = conn.createStatement();
@@ -172,8 +174,8 @@ public class LogDAO {
 		}
 		return id;
 	}
-	
-	public void delete_all(){
+
+	public void delete_all() {
 		conn = DBUtil.getConnection();
 		String sql = "delete from log where 1=1";
 		try {
@@ -186,17 +188,9 @@ public class LogDAO {
 		return;
 	}
 	/*
-	public static void main(String[] args){
-		LogDAO ld = new LogDAO();
-		ResultSet rs = ld.query_all();
-		try {
-			while(rs.next()){
-				System.out.print(rs.getString(2));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	*/
+	 * public static void main(String[] args){ LogDAO ld = new LogDAO();
+	 * ResultSet rs = ld.query_all(); try { while(rs.next()){
+	 * System.out.print(rs.getString(2)); } } catch (SQLException e) { // TODO
+	 * Auto-generated catch block e.printStackTrace(); } }
+	 */
 }

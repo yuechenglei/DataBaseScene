@@ -121,7 +121,7 @@ if (op.equals("2") || op.equals("3"))
     		<td ><%=rs.getString(4) %></td> 
 <%
 if (op.equals("2"))
-	out.print("<td ><a href=\"AnJianShuXing.jsp?op=modify&id="+rs.getString(5)+"\">修改</a></td>");
+	out.print("<td ><a href=\"ChangeScene.jsp?op=modify&id="+rs.getString(5)+"\">修改</a></td>");
 if (op.equals("3"))
 	out.print("<td ><a href=\"jspcl/ModifyCase.jsp?op=delete&id="+rs.getString(5)+"\">删除</a></td>");
 %>

@@ -14,7 +14,7 @@
 <html>
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=GB2312">
-        <title>JSP实验欢迎您！</title>
+        <title>修改</title>
         <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="CSS/style.css" rel="stylesheet" type="text/css" />
 <script language="javascript">

@@ -1,5 +1,5 @@
 package sdu.edu.scene.db;
-
+//
 public class DBInfo {
 
 	private static String password = "ycl,,123";

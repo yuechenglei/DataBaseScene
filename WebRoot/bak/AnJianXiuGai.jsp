@@ -102,7 +102,7 @@ function func()
     		<td ><%=rs.getString(2) %></td> 
     		<td  ><%=rs.getString(3) %></td> 
     		<td ><%=rs.getString(4) %></td> 
-    		<td ><a href="AnJianShuXing.jsp?op=modify&id=<%=rs.getString(5)%>">修改</a></td>
+    		<td ><a href="ChangeScene.jsp?op=modify&id=<%=rs.getString(5)%>">修改</a></td>
     	</tr> 
 <%
 	} 

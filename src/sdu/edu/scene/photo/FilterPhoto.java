@@ -12,7 +12,7 @@ import sdu.edu.scene.photo.PhotoAttributes;
 
 public class FilterPhoto {
 	public BufferedImage getFilteredImage(InputStream is, PhotoAttributes pa) {
-		BufferedInputStream bis = new BufferedInputStream(is); //Éú³É»º´æÊäÈëÁ÷  
+		BufferedInputStream bis = new BufferedInputStream(is); //
 		BufferedImage bimage;
 		int	width, height, type;
 		try {
@@ -69,7 +69,7 @@ public class FilterPhoto {
 			height = max_h;
 		}
 
-		// Í¼Æ¬²Ã¼ô
+		// Í¼Æ¬ï¿½Ã¼ï¿½
 		if (pa.ClipWidth > 3 && pa.ClipHeight > 3) {
 			int s = (int)(width*pa.ClipLeft*0.01);
 			int t = (int)(height*pa.ClipTop*0.01);
